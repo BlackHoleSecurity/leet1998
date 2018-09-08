@@ -22,7 +22,6 @@ class CSVReader:
                         except IndexError: # If there is an empty column
                             ai.update({self.TITLE[i_]:''})
                     self.RESULTS.append(ai)
-	print self.RESULTS
         self.get_long_word()
     def get_long_word(self):
         """looking for the longest word"""
