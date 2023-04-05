@@ -2,6 +2,8 @@ import socket, sys
 import asyncio
 
 banner = """Author : Gameye98
+- https://github.com/Gameye98
+- https://t.me/deletuserbot
 Date   : Thu Apr  6 00:26:45 2023
 Purpose: Scanning port with async
 Team   :
