@@ -136,7 +136,7 @@ def main(stdscr):
     banner_maxy = draw_banner(win)
 
     # Define button positions and text
-    button_text = ["Scan via NMAP (fast)", "Scan via PythonSocket (slow)", "Scan via ARP (very fast)"]
+    button_text = ["Scan via NMAP (fast)", "Scan via Ping (slow)", "Scan via ARP (very fast)"]
     button_widths = [len(text) + 2 for text in button_text]  # Calculate widths including brackets
     #button_x_positions = [2, 15, 28]  # X positions of buttons
 
