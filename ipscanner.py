@@ -20,8 +20,9 @@ banner = """
 """
 
 async def pingIPAddress(ip):
-    ping = os.popen(f"ping -c 1 {ip}").read()
-    if "1 received" in ping:
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    status = s.connect_ex((ip,7))
+    if status == 0:
         if ip == myip:
             return "IP: "+ip+" You"
         else:
