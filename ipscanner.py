@@ -11,13 +11,13 @@ banner = """
   |_| author: Gameye98                             
 """
 strinfo = """Date: Sat Dec 14 01:14:12 2024
-GitHub: Gameye98
 Telegram: @deletuserbot
 -=[ BlackHole Security ]=-
 github.com/BlackHoleSecurity
 -=[ Schadenfreude ]=-
 https://t.me/schdenfreude
-"""
+Navigation: h, j, k & l
+Close window: q"""
 
 async def pingIPAddress(ip):
     ping = os.popen(f"ping -c 1 {ip}").read()
@@ -58,7 +58,7 @@ def draw_banner(stdscr):
     for _, v in enumerate(strinfo.splitlines()):
         stdscr.addstr(k, (x//2)-(len(v)//2), v)
         k += 1
-    return k
+    return k-1
 
 def show_dialog(stdscr, data, islist=False):
     height = 20
