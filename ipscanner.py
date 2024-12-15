@@ -9,14 +9,14 @@ banner = """
 | | . |_ -|  _| .'|   |   | -_|  _|
 |_|  _|___|___|__,|_|_|_|_|___|_|  
   |_| author: Gameye98                             
-  Date: Sat Dec 14 01:14:12 2024
-  GitHub: Gameye98
-  Telegram: @deletuserbot
-  Team:
-    - BlackHole Security
-        https://github.com/BlackHoleSecurity
-    - Schadenfreude
-        https://t.me/schdenfreude
+"""
+strinfo = """Date: Sat Dec 14 01:14:12 2024
+GitHub: Gameye98
+Telegram: @deletuserbot
+-=[ BlackHole Security ]=-
+github.com/BlackHoleSecurity
+-=[ Schadenfreude ]=-
+https://t.me/schdenfreude
 """
 
 async def pingIPAddress(ip):
@@ -50,12 +50,15 @@ async def ipscansocket_main(stdscr):
     show_dialog(stdscr, ipaddrs, True)
 
 def draw_banner(stdscr):
-    stdscr.clear()
-    maxy = 0
-    for k, v in enumerate(banner.splitlines()):
-        stdscr.addstr(k, 2, v)
-        maxy = k
-    return maxy
+    k = 0
+    y, x = stdscr.getmaxyx()
+    for _, v in enumerate(banner.splitlines()):
+        stdscr.addstr(k, x // 2 // 2, v)
+        k += 1
+    for _, v in enumerate(strinfo.splitlines()):
+        stdscr.addstr(k, (x//2)-(len(v)//2), v)
+        k += 1
+    return k
 
 def show_dialog(stdscr, data, islist=False):
     height = 20
@@ -137,19 +140,20 @@ def main(stdscr):
 
     # Define button positions and text
     button_text = ["Scan via NMAP (fast)", "Scan via Ping (slow)", "Scan via ARP (very fast)"]
-    button_widths = [len(text) + 2 for text in button_text]  # Calculate widths including brackets
     #button_x_positions = [2, 15, 28]  # X positions of buttons
 
     # Draw buttons
+    _, scrx = stdscr.getmaxyx()
     selected_button = 0  # Track selected button index
     button_height = banner_maxy+2
     for i, text in enumerate(button_text):
-        width = draw_button(win, text, button_height, 6, selected=(i == selected_button))
+        width = draw_button(win, text, button_height, (scrx//2)-(len(text)//2), selected=(i == selected_button))
         button_height += 2
 
     # Draw separator
     #draw_separator(win, button_height+2, width)
-    win.addstr(button_height+2, 2, "Copyright (C) by Gameye98")
+    text = "Copyright (C) by Gameye98"
+    win.addstr(button_height+2, (scrx//2)-(len(text)//2), text)
 
     # Refresh the screen to display changes
     win.refresh()
@@ -179,10 +183,11 @@ def main(stdscr):
         # Redraw buttons with updated selection
         button_height = banner_maxy+2
         for i, text in enumerate(button_text):
-            draw_button(win, text, button_height, 6, selected=(i == selected_button))
+            draw_button(win, text, button_height, (scrx//2)-(len(text)//2), selected=(i == selected_button))
             button_height += 2
         #draw_separator(win, button_height+2, width)
-        win.addstr(button_height+2, 2, "Copyright (C) by Gameye98")
+        text = "Copyright (C) by Gameye98"
+        win.addstr(button_height+2, (scrx//2)-(len(text)//2), text)
         win.refresh()
 
 
